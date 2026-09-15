@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>珀斯往返西澳自驾｜一家三口 11/11-11/23</title>
+  <meta name="description" content="一家三口从珀斯出发并回到珀斯的西澳 13 日自驾行程，含手绘地图、整体表格、每日行程、景点美食体验信息卡与实用准备。">
+  <style>
+    :root {
+      --sand: #f6efe3;
+      --paper: #fffaf1;
+      --ink: #25332f;
+      --muted: #6f7b75;
+      --line: rgba(37, 51, 47, .14);
+      --blue: #2b6f8f;
+      --sea: #dff0ef;
+      --terracotta: #b65f43;
+      --gold: #c89035;
+      --green: #597c55;
+      --shadow: 0 18px 45px rgba(72, 54, 33, .14);
+      --radius: 24px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "PingFang SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% 8%, rgba(223, 240, 239, .9), transparent 28%),
+        radial-gradient(circle at 88% 12%, rgba(244, 207, 139, .45), transparent 26%),
+        linear-gradient(180deg, #f7f0e6 0%, #f4eadb 100%);
+      line-height: 1.65;
+    }
+    a { color: var(--blue); text-decoration: none; }
+    .wrap { width: min(1180px, calc(100% - 32px)); margin: 0 auto; }
+    .hero {
+      padding: 56px 0 28px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 28px;
+      align-items: stretch;
+    }
+    .hero-card, .panel, .day, .photo-card {
+      background: rgba(255, 250, 241, .88);
+      border: 1px solid rgba(255,255,255,.7);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+    .hero-card { padding: 34px; position: relative; overflow: hidden; }
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      right: -80px;
+      top: -90px;
+      background: rgba(43, 111, 143, .12);
+      border-radius: 50%;
+    }
+    .eyebrow { letter-spacing: .18em; color: var(--terracotta); font-weight: 800; font-size: 13px; text-transform: uppercase; }
+    h1 { font-size: clamp(36px, 6vw, 76px); line-height: .96; margin: 18px 0; letter-spacing: -.06em; }
+    .lead { font-size: 18px; color: #485752; max-width: 760px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .chip { padding: 9px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--line); color: #495650; font-size: 14px; }
+    .quick {
+      padding: 24px;
+      display: grid;
+      gap: 14px;
+      background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(226,241,239,.78));
+    }
+    .quick b { display: block; font-size: 13px; color: var(--muted); }
+    .quick strong { font-size: 24px; }
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      backdrop-filter: blur(18px);
+      background: rgba(246, 239, 227, .78);
+      border-top: 1px solid rgba(255,255,255,.55);
+      border-bottom: 1px solid var(--line);
+    }
+    nav .wrap { display: flex; gap: 10px; overflow-x: auto; padding: 12px 0; }
+    nav a { flex: 0 0 auto; padding: 9px 14px; border-radius: 999px; background: rgba(255,255,255,.72); color: var(--ink); font-weight: 700; font-size: 14px; }
+    section { padding: 34px 0; }
+    .section-title { display: flex; justify-content: space-between; gap: 20px; align-items: end; margin-bottom: 18px; }
+    h2 { margin: 0; font-size: clamp(26px, 4vw, 42px); letter-spacing: -.04em; }
+    .section-title p { margin: 0; color: var(--muted); max-width: 560px; }
+    .map-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 22px; }
+    .map-box { padding: 18px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    svg { width: 100%; height: auto; display: block; }
+    .map-image { width: 100%; height: auto; display: block; border-radius: 18px; }
+    .legacy-map { display: none; }
+    .paper-note {
+      padding: 22px;
+      background: rgba(255,255,255,.72);
+      border: 1px dashed rgba(37,51,47,.25);
+      border-radius: 20px;
+    }
+    .paper-note h3 { margin: 0 0 12px; }
+    .paper-note ol { margin: 0; padding-left: 22px; }
+    .paper-note li { margin: 8px 0; }
+    .table-scroll { overflow-x: auto; border-radius: var(--radius); box-shadow: var(--shadow); border: 1px solid var(--line); background: #fffaf2; }
+    table { width: 100%; border-collapse: collapse; min-width: 920px; }
+    th, td { padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+    th { background: #f2dfc5; color: #5b3d2d; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+    td:first-child { font-weight: 800; color: var(--terracotta); white-space: nowrap; }
+    .days { display: grid; gap: 16px; }
+    details.day { padding: 0; overflow: hidden; }
+    summary { cursor: pointer; list-style: none; padding: 20px 24px; display: grid; grid-template-columns: 88px 1fr auto; gap: 16px; align-items: center; }
+    summary::-webkit-details-marker { display: none; }
+    .dnum { color: var(--terracotta); font-weight: 900; letter-spacing: .08em; }
+    .day h3 { margin: 0; font-size: 22px; }
+    .day small { color: var(--muted); }
+    .day-body { padding: 0 24px 24px; display: grid; gap: 16px; }
+    .periods { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .period { padding: 16px; border-radius: 18px; background: rgba(255,255,255,.72); border: 1px solid var(--line); }
+    .period b { color: var(--blue); }
+    .route-line { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; color: #42514c; }
+    .route-line span { padding: 7px 10px; background: #fff; border-radius: 999px; border: 1px solid var(--line); }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .photo-card { overflow: hidden; }
+    .photo-card img { width: 100%; aspect-ratio: 16/10; object-fit: cover; display: block; background: #e8ded0; }
+    .photo-copy { padding: 16px; }
+    .photo-copy span { color: var(--terracotta); font-weight: 800; font-size: 13px; }
+    .photo-copy h3 { margin: 6px 0; font-size: 20px; }
+    .photo-copy p { margin: 0; color: #52605b; }
+    .facts { display: grid; gap: 7px; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 13px; color: #4b5a55; }
+    .facts b { color: var(--ink); }
+    .actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+    .actions a { padding: 7px 10px; border-radius: 999px; background: #fff; border: 1px solid var(--line); font-size: 13px; font-weight: 800; }
+    .plain-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .panel { padding: 22px; }
+    .panel h3 { margin: 0 0 10px; }
+    .panel ul { margin: 0; padding-left: 20px; }
+    .panel li { margin: 7px 0; }
+    .insight-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .insight {
+      padding: 18px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.78);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 30px rgba(72, 54, 33, .08);
+    }
+    .insight span { display: inline-block; color: var(--terracotta); font-weight: 900; font-size: 12px; letter-spacing: .08em; margin-bottom: 6px; }
+    .insight h3 { margin: 0 0 8px; font-size: 18px; }
+    .insight p { margin: 0; color: #52605b; font-size: 14px; }
+    .note { color: var(--muted); font-size: 14px; }
+    .footer { padding: 34px 0 60px; color: var(--muted); text-align: center; }
+    @media (max-width: 880px) {
+      .hero, .map-grid, .cards, .plain-grid, .periods, .insight-grid { grid-template-columns: 1fr; }
+      summary { grid-template-columns: 1fr auto; }
+      .dnum { grid-column: 1 / -1; }
+      .hero { padding-top: 28px; }
+      .hero-card { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap hero">
+    <div class="hero-card">
+      <div class="eyebrow">WESTERN AUSTRALIA · FAMILY ROAD TRIP</div>
+      <h1>印度洋边的西澳环线</h1>
+      <p class="lead">一家三口从珀斯取还车，沿海岸、酒庄、森林、岩洞与野生动物小岛慢慢展开。行程按亲子节奏设计：长距离驾驶日压缩活动，连续移动后安排海边或城市恢复。</p>
+      <div class="chips">
+        <span class="chip">2026.11.11 出发</span>
+        <span class="chip">2026.11.23 离开</span>
+        <span class="chip">13 天 / 珀斯往返</span>
+        <span class="chip">自驾优先</span>
+        <span class="chip">景点 · 美食 · 体验信息卡</span>
+      </div>
+    </div>
+    <aside class="quick panel">
+      <div><b>路线主轴</b><strong>Perth → Rottnest → Pinnacles → Margaret River → Albany → Wave Rock → Perth</strong></div>
+      <div><b>适合家庭</b><span>每日核心停留 2-4 个，餐饮选择偏轻松、可预约、停车相对友好。</span></div>
+      <div><b>住宿状态</b><span>未提供酒店订单，按区域规划夜宿；确认酒店后可把每天出发点替换为具体地址。</span></div>
+      <div><b>11 月天气</b><span>珀斯初夏通常温和偏干，白天约 17-29°C；南部海岸风大，建议带薄外套。</span></div>
+    </aside>
+  </header>
+
+  <nav>
+    <div class="wrap">
+      <a href="#map">手绘地图</a>
+      <a href="#overview">整体表</a>
+      <a href="#daily">单天行程</a>
+      <a href="#sights">景点信息</a>
+      <a href="#food">美食信息</a>
+      <a href="#experiences">体验信息</a>
+      <a href="#prep">准备</a>
+    </div>
+  </nav>
+
+  <main>
+    <section id="map" class="wrap">
+      <div class="section-title">
+        <h2>手绘地图</h2>
+        <p>用真实地理关系做成旅行手账风示意图：北上尖峰石阵、向西到罗特尼斯岛、向南进入玛格丽特河和奥尔巴尼，再经内陆巨浪岩回珀斯。</p>
+      </div>
+      <div class="map-grid">
+        <div class="map-box">
+          <img class="map-image" src="./handdrawn-itinerary-map-public.jpg" alt="珀斯往返西澳自驾手绘行程地图">
+          <svg class="legacy-map" viewBox="0 0 900 660" role="img" aria-label="珀斯往返西澳自驾手绘地图">
+            <defs>
+              <filter id="soft"><feDropShadow dx="0" dy="6" stdDeviation="5" flood-color="#6d4a30" flood-opacity=".18"/></filter>
+              <linearGradient id="sea" x1="0" x2="1"><stop stop-color="#dff0ef"/><stop offset="1" stop-color="#c8e7ed"/></linearGradient>
+            </defs>
+            <rect x="20" y="20" width="860" height="620" rx="34" fill="#fff8ea"/>
+            <path d="M85 95 C195 36 302 66 382 124 C470 188 604 188 715 140 C792 105 842 143 852 210 L852 604 L84 604 Z" fill="url(#sea)" opacity=".86"/>
+            <path d="M240 58 C342 92 383 157 391 236 C402 330 459 394 542 431 C618 466 703 527 746 610 L158 610 C146 482 165 366 203 251 C224 185 223 120 240 58 Z" fill="#f5dfba" opacity=".92"/>
+            <path d="M290 96 C350 150 338 225 374 284 C420 359 494 398 566 448 C632 494 678 540 705 596" fill="none" stroke="#9a6a44" stroke-width="10" stroke-linecap="round" stroke-dasharray="1 18"/>
+            <path d="M309 140 C274 178 245 205 214 216" fill="none" stroke="#2b6f8f" stroke-width="5" stroke-linecap="round" stroke-dasharray="11 10"/>
+            <path d="M315 158 C396 94 486 91 596 110" fill="none" stroke="#b65f43" stroke-width="5" stroke-linecap="round"/>
+            <path d="M333 256 C308 342 285 414 286 507" fill="none" stroke="#597c55" stroke-width="6" stroke-linecap="round"/>
+            <path d="M286 507 C382 535 510 555 660 586" fill="none" stroke="#597c55" stroke-width="6" stroke-linecap="round"/>
+            <path d="M660 586 C626 506 580 452 519 405 C436 341 381 291 333 256" fill="none" stroke="#c89035" stroke-width="6" stroke-linecap="round"/>
+            <g font-family="Arial, sans-serif" font-weight="800" fill="#25332f">
+              <text x="58" y="70" font-size="24">珀斯往返西澳自驾</text>
+              <text x="704" y="70" font-size="15" fill="#7a6044">11月约 17-29°C</text>
+            </g>
+            <g filter="url(#soft)" font-family="Arial, sans-serif" font-size="15" fill="#25332f">
+              <g><circle cx="315" cy="158" r="13" fill="#b65f43"/><text x="335" y="163">珀斯</text></g>
+              <g><circle cx="214" cy="216" r="13" fill="#2b6f8f"/><text x="95" y="220">Rottnest Island</text></g>
+              <g><circle cx="596" cy="110" r="13" fill="#c89035"/><text x="615" y="115">Pinnacles</text></g>
+              <g><circle cx="333" cy="256" r="13" fill="#597c55"/><text x="352" y="261">Busselton</text></g>
+              <g><circle cx="286" cy="507" r="13" fill="#597c55"/><text x="96" y="512">Margaret River</text></g>
+              <g><circle cx="660" cy="586" r="13" fill="#597c55"/><text x="681" y="591">Albany</text></g>
+              <g><circle cx="519" cy="405" r="13" fill="#c89035"/><text x="540" y="410">Wave Rock</text></g>
+            </g>
+            <g fill="none" stroke="#25332f" opacity=".45" stroke-width="2">
+              <path d="M760 180 l18 28 l-36 0 z"/>
+              <path d="M112 414 c24-18 44-18 66 0"/>
+              <path d="M450 548 c18-31 41-31 58 0"/>
+              <path d="M185 295 c18-12 39-12 58 0"/>
+            </g>
+          </svg>
+        </div>
+        <aside class="paper-note">
+          <h3>夜宿与节奏</h3>
+          <ol>
+            <li>D1-D2：珀斯市区，适应时差、取车、国王公园与天鹅河。</li>
+            <li>D3：罗特尼斯岛日归，晚上回珀斯，避免带行李上岛。</li>
+            <li>D4-D5：北上 Cervantes / Jurien Bay，看尖峰石阵与海岸。</li>
+            <li>D6-D8：Busselton 与 Margaret River，海滩、酒庄、洞穴和灯塔。</li>
+            <li>D9-D10：Denmark / Albany，树顶步道、海岸奇岩与观鲸视角。</li>
+            <li>D11-D12：经内陆到 Hyden / York，巨浪岩后回珀斯。</li>
+            <li>D13：珀斯轻松收尾，还车后离开。</li>
+          </ol>
+        </aside>
+      </div>
+    </section>
+
+    <section id="overview" class="wrap">
+      <div class="section-title">
+        <h2>整体行程表</h2>
+        <p>先看总览，再进入后面的单天行程。车程为保守估算，实际以当天导航、道路施工和天气为准。</p>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>日期</th><th>路线</th><th>夜宿区域</th><th>核心安排</th><th>驾驶</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>11/11 D1</td><td>抵达珀斯</td><td>珀斯</td><td>取车、Elizabeth Quay、Swan River 傍晚散步</td><td>机场到市区约 25-35 分钟</td></tr>
+            <tr><td>11/12 D2</td><td>珀斯市区 + Caversham</td><td>珀斯</td><td>Caversham Wildlife Park、Kings Park 日落、Northbridge 恢复餐</td><td>市内与近郊短途</td></tr>
+            <tr><td>11/13 D3</td><td>Fremantle + Rottnest</td><td>珀斯</td><td>Fremantle B Shed 渡轮、主聚落 Quokka、Island Explorer / 轻骑行</td><td>自驾到码头约 35 分钟，岛上无自驾</td></tr>
+            <tr><td>11/14 D4</td><td>珀斯 → Lancelin → Pinnacles</td><td>Cervantes / Jurien Bay</td><td>沙丘、Nambung National Park 日落</td><td>约 260 km / 3.5 小时</td></tr>
+            <tr><td>11/15 D5</td><td>Cervantes → Jurien Bay → 珀斯</td><td>珀斯</td><td>海岸步道、龙虾午餐、回城休整</td><td>约 240 km / 3 小时</td></tr>
+            <tr><td>11/16 D6</td><td>珀斯 → Busselton → Yallingup</td><td>Yallingup / Margaret River</td><td>Busselton Jetty、海边 playground、Yallingup 入住</td><td>约 260 km / 3.25 小时</td></tr>
+            <tr><td>11/17 D7</td><td>Yallingup → Margaret River</td><td>Yallingup / Margaret River</td><td>Vasse Felix、亲子酒庄午餐、Ngilgi / Mammoth Cave、Surfers Point</td><td>约 90 km / 1.5 小时</td></tr>
+            <tr><td>11/18 D8</td><td>Margaret River 环线</td><td>Yallingup / Margaret River</td><td>Cape Leeuwin、Hamelin Bay、Boranup Forest、亲子啤酒屋晚餐</td><td>约 160 km / 2.5 小时</td></tr>
+            <tr><td>11/19 D9</td><td>Margaret River → Denmark</td><td>Denmark / Albany</td><td>Valley of the Giants、Greens Pool</td><td>约 330 km / 4.25 小时</td></tr>
+            <tr><td>11/20 D10</td><td>Albany 海岸</td><td>Albany</td><td>Gap、Natural Bridge、Middleton Beach</td><td>区域短途约 50-80 km</td></tr>
+            <tr><td>11/21 D11</td><td>Albany → Stirling Range → Hyden</td><td>Hyden</td><td>Porongurup / Stirling Range 远眺、内陆乡镇</td><td>约 380 km / 4.75 小时</td></tr>
+            <tr><td>11/22 D12</td><td>Hyden → Wave Rock → York → 珀斯</td><td>珀斯</td><td>巨浪岩、约克老街、返城</td><td>约 350 km / 4.5 小时</td></tr>
+            <tr><td>11/23 D13</td><td>珀斯离开</td><td>离开</td><td>Lake Monger / City Beach 轻松收尾、还车</td><td>按航班时间预留 3 小时</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="daily" class="wrap">
+      <div class="section-title">
+        <h2>单天行程</h2>
+        <p>每天保留“早点出发、下午留缓冲、傍晚看光线”的节奏，适合带孩子的自驾家庭。</p>
+      </div>
+      <div class="days">
+        <details class="day" open>
+          <summary><span class="dnum">DAY 01</span><div><small>11/11 · 珀斯抵达</small><h3>取车与天鹅河轻适应</h3></div><span>＋</span></summary>
+          <div class="day-body">
+            <div class="route-line"><span>Perth Airport</span><span>Elizabeth Quay</span><span>Bell Tower</span><span>Swan River</span></div>
+            <div class="periods"><div class="period"><b>上午/中午</b><p>抵达后取车，先确认儿童座椅、导航、离线地图和加油规则；如果红眼航班，直接去酒店寄存。</p></div><div class="period"><b>下午</b><p>Elizabeth Quay 与 Bell Tower 轻松散步，孩子可在河边活动，避免第一天安排博物馆式高强度参观。</p></div><div class="period"><b>晚上</b><p>在市区或 Northbridge 简单晚餐，采购饮用水、防晒和第二天早餐。</p></div></div>
+          </div>
+        </details>
+        <details class="day">
+          <summary><span class="dnum">DAY 02</span><div><small>11/12 · 珀斯亲子恢复日</small><h3>Caversham 动物园与国王公园</h3></div><span>＋</span></summary>
+          <div class="day-body">
+            <div class="route-line"><span>Caversham Wildlife Park</span><span>Northbridge</span><span>Kings Park</span><span>Botanic Garden</span></div>
+            <div class="periods"><div class="period"><b>上午</b><p>Caversham Wildlife Park 放在第一整天，亲子反馈比纯市区博物馆更有参与感；想要考拉合照或热门互动，尽量开门前后到。</p></div><div class="period"><b>下午</b><p>回 Northbridge 吃越南粉、亚洲简餐或回公寓休息；如果孩子状态好，再去 Kings Park 走短线看城市景观。</p></div><div class="period"><b>晚上</b><p>国王公园看日落后早点回酒店，采购饮用水、防晒、帽绳和北上小零食。</p></div></div>
+          </div>
+        </details>
+        <details class="day">
+          <summary><span class="dnum">DAY 03</span><div><small>11/13 · Rottnest Island</small><h3>短途渡轮与 Quokka 日</h3></div><span>＋</span></summary>
+          <div class="day-body">
+            <div class="route-line"><span>Fremantle B Shed</span><span>Thomson Bay</span><span>The Basin</span><span>Island Explorer</span></div>
+            <div class="periods"><div class="period"><b>上午</b><p>从 Fremantle B Shed 上船更省时；若要骑行，船票/自行车尽量一起提前订好，下岛再租容易排队。上岛后先在主聚落找 Quokka，不必一开始冲远点。</p></div><div class="period"><b>下午</b><p>亲子优先“主聚落 + The Basin/Pinky Beach + Island Explorer 一段”，体力好再短骑；不要把灯塔、West End、浮潜全部塞进同一天。</p></div><div class="period"><b>晚上</b><p>16:00 左右回码头候船，确认回程停靠点后再下船；回 Fremantle 后吃海鲜或披萨，不追太晚船班。</p></div></div>
+          </div>
+        </details>
+        <details class="day">
+          <summary><span class="dnum">DAY 04</span><div><small>11/14 · 北上尖峰石阵</small><h3>沙丘、海岸与荒漠日落</h3></div><span>＋</span></summary>
+          <div class="day-body">
+            <div class="route-line"><span>Perth</span><span>Lancelin Sand Dunes</span><span>Pinnacles Desert</span><span>Cervantes</span></div>
+            <div class="periods"><div class="period"><b>上午</b><p>沿 Indian Ocean Drive 北上，在 Lancelin 沙丘短停；风大时只拍照不滑沙，避免孩子吃沙。</p></div><div class="period"><b>下午</b><p>进入 Nambung National Park，先走 Discovery Centre，再按日落光线开 Pinnacles Desert loop；沙漠段不要压到太晚。</p></div><div class="period"><b>晚上</b><p>住 Cervantes 或 Jurien Bay，晚餐选龙虾/简餐；公开笔记反复提醒长途路段袋鼠多，天黑后减少郊外驾驶。</p></div></div>
+          </div>
+        </details>
+        <details class="day">
+          <summary><span class="dnum">DAY 05</span><div><small>11/15 · 海岸回珀斯</small><h3>Jurien Bay 慢游与回城</h3></div><span>＋</span></summary>
+          <div class="day-body">
+            <div class="route-line"><span>Cervantes</span><span>Jurien Bay Jetty</span><span>Lobster Shack</span><span>Perth</span></div>
+            <div class="periods"><div class="period"><b>上午</b><p>海边散步或参加 Lobster Shack 游览，旺季需提前确认班次；想吃龙虾把午餐锁在 11:00-15:00 之间更稳。</p></div><div class="period"><b>下午</b><p>午餐后回珀斯，中途按疲劳程度在 Yanchep 或服务站短休，不为了多打卡继续北上。</p></div><div class="period"><b>晚上</b><p>回珀斯补给，洗衣整理南下行李，第二天尽量早出发。</p></div></div>
+          </div>
+        </details>
+        <details class="day">
+          <summary><span class="dnum">DAY 06</span><div><small>11/16 · 南下 Busselton</small><h3>长栈桥与浅海黄昏</h3></div><span>＋</span></summary>
+          <div class="day-body">
+            <div class="route-line"><span>Perth</span><span>Mandurah 休息</span><span>Busselton Jetty</span><span>Geographe Bay</span></div>
+            <div class="periods"><div class="period"><b>上午</b><p>从珀斯南下，途中在 Mandurah 或 Bunbury 休息，避免一口气开到孩子烦躁。</p></div><div class="period"><b>下午</b><p>Busselton Jetty 小火车和水下观测站二选一即可；亲子反馈里栈桥边大 playground 很加分，建议留 45-60 分钟。</p></div><div class="period"><b>晚上</b><p>如果后两天重点在玛河，建议继续到 Yallingup / Margaret River 住，减少第二天折返。</p></div></div>
+          </div>
+        </details>
+        <details class="day">
+          <summary><span class="dnum">DAY 07</span><div><small>11/17 · Margaret River</small><h3>酒庄午餐与洞穴</h3></div><span>＋</span></summary>
+          <div class="day-body">
+            <div class="route-line"><span>Vasse Felix</span><span>Will's Domain / Swings & Roundabouts</span><span>Ngilgi Cave</span><span>Surfers Point</span></div>
+            <div class="periods"><div class="period"><b>上午</b><p>住 Yallingup 时先去 Vasse Felix 或 Cape Naturaliste 一带，成人可安排简短 winery tour，孩子在草地休息更轻松。</p></div><div class="period"><b>下午</b><p>午餐优先选带 kids menu / playground 的亲子酒庄，如 Will's Domain 或 Swings & Roundabouts；洞穴选 Ngilgi 或 Mammoth Cave，穿防滑鞋。</p></div><div class="period"><b>晚上</b><p>Surfers Point 看冲浪和夕阳，不建议下水；若孩子累了，改去 Cheeky Monkey / Bailey Brewing 这类亲子啤酒屋吃早晚餐。</p></div></div>
+          </div>
+        </details>
+        <details class="day">
+          <summary><span class="dnum">DAY 08</span><div><small>11/18 · 灯塔与海湾</small><h3>澳洲西南角的一天</h3></div><span>＋</span></summary>
+          <div class="day-body">
+            <div class="route-line"><span>Cape Leeuwin Lighthouse</span><span>Hamelin Bay</span><span>Boranup Forest</span><span>Margaret River</span></div>
+            <div class="periods"><div class="period"><b>上午</b><p>开往 Cape Leeuwin Lighthouse，提前确认导览和风况；这里是印度洋与南大洋交汇的地标，风大时减少登高停留。</p></div><div class="period"><b>下午</b><p>Hamelin Bay 只远观野生鳐鱼，保持距离；回程穿过 Boranup Forest。若天气冷，不强行安排 Injidup Natural Spa 涉水。</p></div><div class="period"><b>晚上</b><p>回 Margaret River / Yallingup 用餐，优先选择可预订、带户外空间的餐厅，补充第二天跨区长途驾驶的零食和水。</p></div></div>
+          </div>
+        </details>
+        <details class="day">
+          <summary><span class="dnum">DAY 09</span><div><small>11/19 · Denmark / Albany</small><h3>森林树顶与绿池海岸</h3></div><span>＋</span></summary>
+          <div class="day-body">
+            <div class="route-line"><span>Margaret River</span><span>Valley of the Giants</span><span>Greens Pool</span><span>Denmark</span></div>
+            <div class="periods"><div class="period"><b>上午</b><p>这天车程较长，建议 8 点前出发，中途在 Manjimup 或 Pemberton 休息，车上备水和零食。</p></div><div class="period"><b>下午</b><p>走 Valley of the Giants Tree Top Walk，再到 Greens Pool 看花岗岩海湾；南线笔记普遍提醒海边风大，孩子外套随身带。</p></div><div class="period"><b>晚上</b><p>住 Denmark 或 Albany，晚餐从 Fish & Chips、酒馆或家庭餐厅中选轻松方案。</p></div></div>
+          </div>
+        </details>
+        <details class="day">
+          <summary><span class="dnum">DAY 10</span><div><small>11/20 · Albany 海岸</small><h3>南岸风景与历史</h3></div><span>＋</span></summary>
+          <div class="day-body">
+            <div class="route-line"><span>The Gap</span><span>Natural Bridge</span><span>National Anzac Centre</span><span>Middleton Beach</span></div>
+            <div class="periods"><div class="period"><b>上午</b><p>The Gap 与 Natural Bridge 风很强，孩子必须牵好；先走官方栈道，不越过栏杆。</p></div><div class="period"><b>下午</b><p>National Anzac Centre 适合雨天或强风替代，随后去 Middleton Beach 放松。</p></div><div class="period"><b>晚上</b><p>Albany 镇上晚餐，第二天内陆路程长，提前加满油。</p></div></div>
+          </div>
+        </details>
+        <details class="day">
+          <summary><span class="dnum">DAY 11</span><div><small>11/21 · 内陆到 Hyden</small><h3>山脉远眺与乡镇补给</h3></div><span>＋</span></summary>
+          <div class="day-body">
+            <div class="route-line"><span>Albany</span><span>Porongurup</span><span>Stirling Range Lookout</span><span>Hyden</span></div>
+            <div class="periods"><div class="period"><b>上午</b><p>离开海岸前在 Porongurup 或 Stirling Range 选择低强度观景，不安排高难度徒步。</p></div><div class="period"><b>下午</b><p>穿越内陆到 Hyden，注意手机信号和袋鼠出没，黄昏前抵达。</p></div><div class="period"><b>晚上</b><p>住 Hyden，简单晚餐，查看第二天巨浪岩日出或上午光线。</p></div></div>
+          </div>
+        </details>
+        <details class="day">
+          <summary><span class="dnum">DAY 12</span><div><small>11/22 · Wave Rock 回珀斯</small><h3>巨浪岩与 York 老街</h3></div><span>＋</span></summary>
+          <div class="day-body">
+            <div class="route-line"><span>Wave Rock</span><span>Hippo's Yawn</span><span>York</span><span>Perth</span></div>
+            <div class="periods"><div class="period"><b>上午</b><p>早些到 Wave Rock，拍照后走 Hippo's Yawn 短线，热起来前结束户外活动；巨浪岩路途远，不建议当天从珀斯硬往返。</p></div><div class="period"><b>下午</b><p>经 York 回珀斯，老街短停喝咖啡，长途驾驶中段休息，确认油量后再进城。</p></div><div class="period"><b>晚上</b><p>回珀斯还未必需要当天还车，建议保留一晚方便次日机场移动。</p></div></div>
+          </div>
+        </details>
+        <details class="day">
+          <summary><span class="dnum">DAY 13</span><div><small>11/23 · 珀斯离开</small><h3>城市轻收尾与还车</h3></div><span>＋</span></summary>
+          <div class="day-body">
+            <div class="route-line"><span>Lake Monger</span><span>City Beach</span><span>Perth Airport</span></div>
+            <div class="periods"><div class="period"><b>上午</b><p>按航班时间选择 Lake Monger 看黑天鹅或 City Beach 吃早午餐，不再安排远郊。</p></div><div class="period"><b>下午</b><p>加油、整理车内、提前到租车点还车，给家庭安检和退税预留时间。</p></div><div class="period"><b>晚上</b><p>若晚班机，机场前只保留商场或咖啡馆等低风险停留。</p></div></div>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section id="sights" class="wrap">
+      <div class="section-title">
+        <h2>景点信息</h2>
+        <p>图片之外补充官网、地址、亮点和执行注意，便于出发前逐项核对。</p>
+      </div>
+      <div class="cards">
+        <article class="photo-card"><img alt="Kings Park" src="https://copilot-sg-og.byteintl.net/api/ide/v1/text_to_image?prompt=realistic%20travel%20photography%2C%20Kings%20Park%20Perth%20skyline%20view%2C%20warm%20November%20morning%2C%20family%20friendly%20botanic%20garden%2C%20natural%20colors%2C%20no%20text&image_size=landscape_16_9"><div class="photo-copy"><span>PERTH</span><h3>Kings Park</h3><p>最适合建立方向感，俯瞰 CBD 与 Swan River。</p><div class="facts"><div><b>地址：</b>Fraser Ave, Kings Park WA 6005</div><div><b>亮点：</b>城市观景、植物园、亲子步道、日落。</div><div><b>注意：</b>11 月日晒强，傍晚体验更舒服。</div></div><div class="actions"><a href="https://www.bgpa.wa.gov.au/kings-park" target="_blank" rel="noopener">官网</a><a href="https://maps.google.com/?q=Kings+Park+Perth" target="_blank" rel="noopener">地图</a></div></div></article>
+        <article class="photo-card"><img alt="Rottnest Island" src="https://copilot-sg-og.byteintl.net/api/ide/v1/text_to_image?prompt=realistic%20travel%20photography%2C%20Rottnest%20Island%20turquoise%20bay%20and%20quokka%20near%20path%2C%20Western%20Australia%2C%20sunny%20coastal%20day%2C%20no%20text&image_size=landscape_16_9"><div class="photo-copy"><span>ISLAND</span><h3>Rottnest Island</h3><p>海岛日归重点是 Quokka、浅色海湾和轻量环岛。</p><div class="facts"><div><b>地址：</b>Ferry from B Shed, Fremantle to Rottnest Island</div><div><b>亮点：</b>Thomson Bay、The Basin、Pinky Beach、Quokka 合照。</div><div><b>注意：</b>自行车提前订；不投喂、不触摸 Quokka；回船确认码头。</div></div><div class="actions"><a href="https://www.rottnestisland.com/" target="_blank" rel="noopener">官网</a><a href="https://maps.google.com/?q=Rottnest+Island" target="_blank" rel="noopener">地图</a></div></div></article>
+        <article class="photo-card"><img alt="Pinnacles Desert" src="https://copilot-sg-og.byteintl.net/api/ide/v1/text_to_image?prompt=realistic%20travel%20photography%2C%20Pinnacles%20Desert%20limestone%20formations%20at%20sunset%2C%20Nambung%20National%20Park%2C%20Western%20Australia%2C%20cinematic%20warm%20light%2C%20no%20text&image_size=landscape_16_9"><div class="photo-copy"><span>NORTH COAST</span><h3>Pinnacles Desert</h3><p>北线视觉亮点，傍晚光线比正午柔和。</p><div class="facts"><div><b>地址：</b>Nambung National Park, Cervantes WA 6511</div><div><b>亮点：</b>石灰岩荒漠、日落光线、车行 loop。</div><div><b>注意：</b>风沙大，孩子戴墨镜；天黑后少开郊外路。</div></div><div class="actions"><a href="https://exploreparks.dbca.wa.gov.au/park/nambung-national-park" target="_blank" rel="noopener">官网</a><a href="https://maps.google.com/?q=Pinnacles+Desert+Nambung+National+Park" target="_blank" rel="noopener">地图</a></div></div></article>
+        <article class="photo-card"><img alt="Busselton Jetty" src="https://copilot-sg-og.byteintl.net/api/ide/v1/text_to_image?prompt=realistic%20travel%20photography%2C%20Busselton%20Jetty%20long%20wooden%20pier%20over%20clear%20blue%20water%2C%20Western%20Australia%2C%20golden%20hour%2C%20no%20text&image_size=landscape_16_9"><div class="photo-copy"><span>SOUTH WEST</span><h3>Busselton Jetty</h3><p>栈桥、小火车、海湾和儿童 playground 适合南下第一站。</p><div class="facts"><div><b>地址：</b>17 Foreshore Parade, Busselton WA 6280</div><div><b>亮点：</b>长栈桥、小火车、水下观测站、海边游乐场。</div><div><b>注意：</b>小火车/观测站看天气和票量，亲子可不强求全套。</div></div><div class="actions"><a href="https://www.busseltonjetty.com.au/" target="_blank" rel="noopener">官网</a><a href="https://maps.google.com/?q=Busselton+Jetty" target="_blank" rel="noopener">地图</a></div></div></article>
+        <article class="photo-card"><img alt="Cape Leeuwin" src="https://copilot-sg-og.byteintl.net/api/ide/v1/text_to_image?prompt=realistic%20travel%20photography%2C%20Cape%20Leeuwin%20Lighthouse%20on%20rugged%20coast%2C%20two%20oceans%20meeting%2C%20Western%20Australia%2C%20windy%20clear%20day%2C%20no%20text&image_size=landscape_16_9"><div class="photo-copy"><span>LIGHTHOUSE</span><h3>Cape Leeuwin</h3><p>西南角地标，印度洋与南大洋交汇的仪式感。</p><div class="facts"><div><b>地址：</b>Leeuwin Rd, Augusta WA 6290</div><div><b>亮点：</b>灯塔、海岸线、两洋交汇地标。</div><div><b>注意：</b>风很大，登塔和导览需看开放情况。</div></div><div class="actions"><a href="https://www.margaretriver.com/things-to-do/attractions/cape-leeuwin-lighthouse/" target="_blank" rel="noopener">官网</a><a href="https://maps.google.com/?q=Cape+Leeuwin+Lighthouse" target="_blank" rel="noopener">地图</a></div></div></article>
+        <article class="photo-card"><img alt="Wave Rock" src="https://copilot-sg-og.byteintl.net/api/ide/v1/text_to_image?prompt=realistic%20travel%20photography%2C%20Wave%20Rock%20Hyden%20Western%20Australia%2C%20granite%20wave%20formation%2C%20family%20road%20trip%20scene%2C%20morning%20light%2C%20no%20text&image_size=landscape_16_9"><div class="photo-copy"><span>INLAND</span><h3>Wave Rock</h3><p>独特但路远，所以采用 Hyden 过夜，不做珀斯当天往返。</p><div class="facts"><div><b>地址：</b>Wave Rock Rd, Hyden WA 6359</div><div><b>亮点：</b>巨浪岩、Hippo's Yawn、内陆麦田公路。</div><div><b>注意：</b>早晨游览；夏季苍蝇多，备防蝇网和水。</div></div><div class="actions"><a href="https://www.waverock.com.au/" target="_blank" rel="noopener">官网</a><a href="https://maps.google.com/?q=Wave+Rock+Hyden" target="_blank" rel="noopener">地图</a></div></div></article>
+      </div>
+    </section>
+
+    <section id="food" class="wrap">
+      <div class="section-title">
+        <h2>美食信息</h2>
+        <p>优先选择适合家庭、停车相对友好、能代表西澳海岸和农产的餐饮类型。</p>
+      </div>
+      <div class="cards">
+        <article class="photo-card"><img alt="Western Australian lobster" src="https://copilot-sg-og.byteintl.net/api/ide/v1/text_to_image?prompt=realistic%20food%20photography%2C%20Western%20Australian%20lobster%20lunch%20near%20Cervantes%2C%20coastal%20restaurant%20table%2C%20fresh%20seafood%2C%20natural%20light%2C%20no%20text&image_size=landscape_16_9"><div class="photo-copy"><span>CERVANTES</span><h3>Lobster Shack</h3><p>D5 午餐体验，龙虾餐和工厂游览可组合。</p><div class="facts"><div><b>地址：</b>37 Catalonia St, Cervantes WA 6511</div><div><b>亮点：</b>西澳龙虾、海岸小镇、午餐后返珀斯顺路。</div><div><b>注意：</b>午餐尽量锁 11:00-15:00，游览班次提前查。</div></div><div class="actions"><a href="https://www.lobstershack.com.au/" target="_blank" rel="noopener">官网</a><a href="https://maps.google.com/?q=Lobster+Shack+Cervantes" target="_blank" rel="noopener">地图</a></div></div></article>
+        <article class="photo-card"><img alt="Fremantle fish and chips" src="https://copilot-sg-og.byteintl.net/api/ide/v1/text_to_image?prompt=realistic%20food%20photography%2C%20Fremantle%20fish%20and%20chips%20by%20fishing%20boat%20harbour%2C%20family%20casual%20meal%2C%20Western%20Australia%2C%20no%20text&image_size=landscape_16_9"><div class="photo-copy"><span>FREMANTLE</span><h3>Fish & Chips</h3><p>Rottnest 日归后最顺路，孩子接受度高。</p><div class="facts"><div><b>地址：</b>Fremantle Fishing Boat Harbour, Fremantle WA</div><div><b>亮点：</b>码头氛围、海鲜、返程后不用再进城折腾。</div><div><b>注意：</b>海鸥抢食明显，儿童餐别放桌边。</div></div><div class="actions"><a href="https://maps.google.com/?q=Fremantle+Fishing+Boat+Harbour" target="_blank" rel="noopener">地图</a></div></div></article>
+        <article class="photo-card"><img alt="Margaret River winery lunch" src="https://copilot-sg-og.byteintl.net/api/ide/v1/text_to_image?prompt=realistic%20food%20photography%2C%20Margaret%20River%20winery%20lunch%2C%20seasonal%20Australian%20produce%2C%20vineyard%20view%2C%20family%20friendly%20terrace%2C%20no%20text&image_size=landscape_16_9"><div class="photo-copy"><span>MARGARET RIVER</span><h3>亲子酒庄午餐</h3><p>优先 Will's Domain 或 Swings & Roundabouts，兼顾成人餐和孩子活动。</p><div class="facts"><div><b>地址：</b>Yallingup / Wilyabrup wine region</div><div><b>亮点：</b>kids menu、草地/playground、成人 wine tasting。</div><div><b>注意：</b>热门午餐提前订；指定司机不饮酒。</div></div><div class="actions"><a href="https://www.swings.com.au/" target="_blank" rel="noopener">Swings</a><a href="https://www.willsdomain.com.au/" target="_blank" rel="noopener">Will's</a></div></div></article>
+      </div>
+    </section>
+
+    <section id="experiences" class="wrap">
+      <div class="section-title">
+        <h2>体验信息</h2>
+        <p>体验只保留和这条路线强相关、适合一家三口执行的项目。</p>
+      </div>
+      <div class="cards">
+        <article class="photo-card"><img alt="Rottnest cycling" src="https://copilot-sg-og.byteintl.net/api/ide/v1/text_to_image?prompt=realistic%20travel%20photography%2C%20family%20cycling%20on%20Rottnest%20Island%20coastal%20road%2C%20turquoise%20ocean%2C%20Western%20Australia%2C%20sunny%20day%2C%20no%20text&image_size=landscape_16_9"><div class="photo-copy"><span>NATURE</span><h3>Rottnest 轻骑行 / 巴士</h3><p>亲子不追全岛，按体力选自行车、儿童拖车或 Island Explorer。</p><div class="facts"><div><b>官网：</b>Rottnest Island Authority</div><div><b>亮点：</b>下船即开始玩，The Basin 和主聚落最省力。</div><div><b>注意：</b>儿童车、头盔和巴士票提前确认，岛上日晒强。</div></div><div class="actions"><a href="https://www.rottnestisland.com/see-do/tours-activities/cycling" target="_blank" rel="noopener">骑行</a><a href="https://www.rottnestisland.com/see-do/tours-activities/bus-tours" target="_blank" rel="noopener">巴士</a></div></div></article>
+        <article class="photo-card"><img alt="Mammoth Cave" src="https://copilot-sg-og.byteintl.net/api/ide/v1/text_to_image?prompt=realistic%20travel%20photography%2C%20Mammoth%20Cave%20Margaret%20River%20limestone%20walkway%2C%20soft%20cave%20lighting%2C%20family%20friendly%20nature%20experience%2C%20no%20text&image_size=landscape_16_9"><div class="photo-copy"><span>NATURE</span><h3>Ngilgi / Mammoth Cave</h3><p>洞穴是玛河稳定体验，雨天或大风天也能安排。</p><div class="facts"><div><b>地址：</b>Caves Rd corridor, Yallingup / Margaret River</div><div><b>亮点：</b>钟乳石、亲子步道、自助或导览体验。</div><div><b>注意：</b>台阶和湿滑路面较多，穿防滑鞋；推车不适合进洞。</div></div><div class="actions"><a href="https://margaretriverattractions.com/caves/" target="_blank" rel="noopener">官网</a><a href="https://maps.google.com/?q=Ngilgi+Cave+Yallingup" target="_blank" rel="noopener">地图</a></div></div></article>
+        <article class="photo-card"><img alt="Tree Top Walk" src="https://copilot-sg-og.byteintl.net/api/ide/v1/text_to_image?prompt=realistic%20travel%20photography%2C%20Valley%20of%20the%20Giants%20Tree%20Top%20Walk%2C%20tall%20karri%20forest%2C%20Western%20Australia%2C%20elevated%20walkway%2C%20no%20text&image_size=landscape_16_9"><div class="photo-copy"><span>FOREST</span><h3>Tree Top Walk</h3><p>树冠步道视觉感强，是 Margaret River 到 Albany 路上的主体验。</p><div class="facts"><div><b>地址：</b>Valley of the Giants Rd, Tingledale WA 6333</div><div><b>亮点：</b>高空栈道、古老 tingle forest、Denmark 方向顺路。</div><div><b>注意：</b>孩子恐高可只走 Ancient Empire 地面环线；风大时放慢节奏。</div></div><div class="actions"><a href="https://exploreparks.dbca.wa.gov.au/site/valley-giants-tree-top-walk" target="_blank" rel="noopener">官网</a><a href="https://maps.google.com/?q=Valley+of+the+Giants+Tree+Top+Walk" target="_blank" rel="noopener">地图</a></div></div></article>
+      </div>
+    </section>
+
+    <section id="prep" class="wrap">
+      <div class="section-title">
+        <h2>准备与提醒</h2>
+        <p>住宿、航班和租车订单若已确认，可继续补到页面里。</p>
+      </div>
+      <div class="plain-grid">
+        <div class="panel">
+          <h3>出发前确认</h3>
+          <ul>
+            <li>国际驾照翻译件、租车主驾驶信用卡、儿童座椅与额外驾驶员。</li>
+            <li>Rottnest 往返渡轮、自行车/儿童拖车或 Island Explorer 巴士票。</li>
+            <li>Pinnacles 国家公园门票或通票、Caversham、Busselton Jetty、热门亲子酒庄午餐。</li>
+            <li>南部海岸风大，带防风薄外套；内陆长途日备足水、零食和防蝇网。</li>
+            <li>下载离线地图，记录加油站，长途路段避免黄昏后驾驶。</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>亲子节奏</h3>
+          <ul>
+            <li>每天只设一个“必须完成”的主景点，其余作为天气和体力弹性项。</li>
+            <li>玛河区域优先住 Yallingup / Margaret River 连住，减少每天来回折返。</li>
+            <li>连续长车程后安排海边、栈桥或市区半天恢复。</li>
+            <li>野生动物只远观，不投喂 Quokka、鳐鱼或海鸟。</li>
+            <li>餐厅尽量订 17:30-18:30，避免孩子太饿和热门时段等位。</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>英文备用</h3>
+          <ul>
+            <li>Could we have a child seat, please? 请问可以提供儿童座椅吗？</li>
+            <li>Is this road suitable for a regular rental car? 这条路普通租车能开吗？</li>
+            <li>Do we need to book the tour in advance? 这个导览需要提前预约吗？</li>
+            <li>Could we have a table suitable for a child? 可以安排适合带孩子的座位吗？</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h3>当地注意</h3>
+          <ul>
+            <li>澳大利亚左侧行驶，环岛让右，学校区域限速严格。</li>
+            <li>海岸风浪变化快，只在有救生员或明确安全标识的区域下水。</li>
+            <li>多数地方刷卡方便，但小镇停车、洗衣或临时摊位可备少量现金。</li>
+            <li>国家公园步道务必走标识路线，夏季蛇类和晒伤风险都要重视。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <p>行程为 2026 年 11 月亲子自驾草案；开放时间、船班、门票、天气和道路状况请在出发前再次核对。</p>
+  </footer>
+</body>
+</html>

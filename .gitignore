@@ -1,0 +1,8 @@
+handdrawn-itinerary-map.png
+research/
+research-plan.json
+travel-brief.json
+trip-decisions.json
+.research-state/
+.travel-build-state.json
+.DS_Store

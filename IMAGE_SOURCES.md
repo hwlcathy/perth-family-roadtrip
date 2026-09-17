@@ -29,3 +29,15 @@
 - `quokka-rottnest-island.jpg`: Quokka with joey on Rottnest Island, April 2026 01.jpg — Wikimedia Commons thumbnail/source: https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Quokka_with_joey_on_Rottnest_Island%2C_April_2026_01.jpg/960px-Quokka_with_joey_on_Rottnest_Island%2C_April_2026_01.jpg
 - `national-anzac-centre.jpg`: National Anzac Centre, Albany, April 2022 01.jpg — Wikimedia Commons thumbnail/source: https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9f/National_Anzac_Centre%2C_Albany%2C_April_2022_01.jpg/960px-National_Anzac_Centre%2C_Albany%2C_April_2022_01.jpg
 - `hippos-yawn-wave-rock.jpg`: Hippo's Yawn, Hyden, October 2020 01.jpg — Wikimedia Commons thumbnail/source: https://thumb.wikimedia.org/wikipedia/commons/thumb/c/ce/Hippo%27s_Yawn%2C_Hyden%2C_October_2020_01.jpg/1280px-Hippo%27s_Yawn%2C_Hyden%2C_October_2020_01.jpg
+- `ngilgi-cave.jpg`: Ngilgi Cave official listing image — DBCA Explore Parks / Tourism WA cached image: https://exploreparks.dbca.wa.gov.au/site/ngilgi-cave
+- `nannup-main-street.jpg`: Vasse Highway, main street of Nannup, Western Australia, January 2023 01.jpg — Wikimedia Commons source: https://upload.wikimedia.org/wikipedia/commons/2/23/Vasse_Highway%2C_main_street_of_Nannup%2C_Western_Australia%2C_January_2023_01.jpg
+- `beedelup-falls.jpg`: Beedelup Falls official listing image — DBCA Explore Parks / Bronwyn Wells cached image: https://exploreparks.dbca.wa.gov.au/site/beedelup-falls
+- `shelter-brewing-co.jpg`: Shelter Brewing Co. venue image — Shelter Brewing Co. / Margaret River Region cached image: https://shelterbrewing.com.au/
+- `margaret-river-bakery.jpg`: Margaret River Bakery venue image — official site cached image: https://www.margsbakery.com/
+- `blackwood-cafe-nannup.jpg`: Blackwood Cafe Nannup venue image — public restaurant listing cached image: https://menulist.menu/restaurants/nannup/blackwood-cafe
+- `massimos-place-denmark.jpg`: Massimo's Place venue image — official site cached image: https://www.massimosplace.com.au/
+- `boston-brewing-co.jpg`: Boston Brewing Co. venue image — Best Restaurants listing image courtesy of Boston Brewing Co.: https://www.bestrestaurants.com.au/venues/boston-brewing-co/
+- `little-creatures-fremantle.jpg`: Little Creatures Fremantle venue image — public listing cached image: https://wanderboat.ai/attractions/australia/fremantle/little-creatures-brewery,-fremantle/pRmDXKxKQ9W0MZeMikDuhg
+- `rottnest-bakery.jpg`: Rottnest Bakery venue image — public restaurant listing cached image: https://menulist.menu/restaurants/rottnest-island/rottnest-bakery
+- `austravelpic.jpg`: User-provided itinerary map image from local Downloads folder.
+- Food cards for `The Local Shack Forrestfield`, `Vasse Village / Bunbury Farmers Market`, `124 Deli, Restaurant & Bakery`, and `Perth Airport T1` use generated contextual images via the IDE text-to-image endpoint because no stable reusable local photo asset was available.
